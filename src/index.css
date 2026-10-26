@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { min-height: 100%; }
+  body {
+    background-color: #1A2B4C;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(111, 134, 179, 0.18), transparent 60%),
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: auto, 32px 32px, 32px 32px;
+  }
+}
+
+@layer components {
+  .flow-line {
+    stroke-dasharray: 10 10;
+    animation: flow-dash 1.2s linear infinite;
+  }
+}
+
+@keyframes flow-dash {
+  to { stroke-dashoffset: -40; }
+}
+
+@keyframes flow-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Progress bars grow from the left (scaleX keeps it on the compositor) */
+@keyframes bar-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Sidebar cards slide in from the left */
+@keyframes card-in {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
